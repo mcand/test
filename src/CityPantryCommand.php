@@ -24,17 +24,15 @@ class CityPantryCommand extends Command{
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output) {
-		// $output->writeln('Your file location is: ' . $input->getArgument('input'));
 		$location = $input->getArgument('location');
 		$covers = $input->getArgument('covers');
 		$day = $input->getArgument('day');
 		$time = $input->getArgument('time');
-
 		$parser = new VendorFileParser($input->getArgument('input'));
 		$parser->parse();
 		$vendors = (array) $parser->getVendors();
 		$menu = new MenuFinder($vendors, $location, $covers, $day, $time);
 		echo "The Following Items Can Be Delivered:\n\n";
-		$menu->findMenu();
+		$output->writeln($menu->findMenu());
  	}
 }

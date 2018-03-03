@@ -62,7 +62,7 @@ class MenuFinder{
 			$items = $v->itemsAvailable;
 			foreach($items as $item){
 				$advanceTime = substr($item->advanceTime, 0, -1);
-				if($advanceTime >= $totalHours){
+				if($totalHours >= $advanceTime){
 					array_push($itemsThatCanBeDelivered, $item);
 				}
 			}
