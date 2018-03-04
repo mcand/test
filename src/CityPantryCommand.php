@@ -29,10 +29,16 @@ class CityPantryCommand extends Command{
 		$day = $input->getArgument('day');
 		$time = $input->getArgument('time');
 		$parser = new VendorFileParser($input->getArgument('input'));
-		$parser->parse();
-		$vendors = (array) $parser->getVendors();
-		$menu = new MenuFinder($vendors, $location, $covers, $day, $time);
-		echo "The Following Items Can Be Delivered:\n\n";
-		$output->writeln($menu->findMenu());
+		if($parser->isValidFile() == false){
+			$output->writeln("invalid file");
+		} else {
+			$parser->parse();
+			$vendors = (array) $parser->getVendors();
+			$menu = new MenuFinder($vendors, $location, $covers, $day, $time);
+			$result = $menu->findMenu();
+			foreach($result as $item){
+				$output->writeln($item->name . ';' . $item->allergies . "\n");
+			}			
+		}
  	}
 }

@@ -12,6 +12,28 @@ class VendorFileParser {
 		$this->filePath = $path;
 	}
 
+	public function isValidFile(){
+		$file = fopen($this->filePath, "r");
+		$aux=0;
+		$prev_was_white_line=false;
+		while(($line = fgets($file)) != false){
+			if($aux == 0 && count(explode(';', $line)) != 3){
+				return false;
+			}
+
+			if($aux != 0 && strlen(trim($line)) == 0){
+				$prev_was_white_line = true;
+				continue;
+			}
+
+			if($prev_was_white_line == true && count(explode(';', $line)) != 3){
+				return false;		
+			}
+			++$aux;
+		}
+		return true;
+	}
+
 	public function parse(){
 		$file = fopen($this->filePath, "r");
 		$is_vendor = true; // initially we are looking for vendors

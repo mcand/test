@@ -22,7 +22,7 @@ class MenuFinder{
 		$vendorsInLocation = $this->findVendorsInLocation();
 		$vendorsThatServeCover = $this->findVendorsThatServeCover($vendorsInLocation);
 		$itemsAvailable = $this->itemsThatServeOnTime($vendorsThatServeCover);
-		$this->printItems($itemsAvailable);
+		return $itemsAvailable;
 	}
 
 	private function findVendorsInLocation(){
@@ -70,9 +70,9 @@ class MenuFinder{
 		return $itemsThatCanBeDelivered;
 	}
 
-	private function printItems($items){
-		foreach($items as $item){
-			echo($item->name . ';' . $item->allergies . "\n");
-		}
-	}
+	// private function printItems($items){
+	// 	foreach($items as $item){
+	// 		echo($item->name . ';' . $item->allergies . "\n");
+	// 	}
+	// }
 }
