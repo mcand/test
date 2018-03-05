@@ -2,7 +2,7 @@
 
 ## Before Running
 
-```compose install to run all dependencies```
+```compose install``` to install all dependencies
 
 ## Running
 
