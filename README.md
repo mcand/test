@@ -1,5 +1,3 @@
-# This is a test to CityPantry created by Andre Furquim
-
 ## Before Running
 
 ```compose install``` to install all dependencies
